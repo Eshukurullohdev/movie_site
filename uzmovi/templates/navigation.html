@@ -1,0 +1,812 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" />
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css"> 
+</head>
+<style>
+        .scrollbar-custom::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .scrollbar-custom::-webkit-scrollbar-track {
+            background: #11151A;
+            border-radius: 10px;
+        }
+
+        .scrollbar-custom::-webkit-scrollbar-thumb {
+            background: #6F914C;
+            border-radius: 10px;
+        }
+
+        .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+            background: #82A85A;
+        }
+
+        .scrollbar-custom {
+            scrollbar-color: #6F914C #11151A;
+            scrollbar-width: thin;
+        }
+    </style>
+    
+<body class="relative">
+  
+  <div class="hidden sm:flex items-center sm:block  justify-between bg-[#0C141D]">
+    <img class="w-[238px] h-[63px]" src="https://uzmovi.net/images/logo.png" alt="" />
+    <nav class="flex jusitfy-center items-center gap-[20px] text-[#f8fbf5]">
+      <button class="w-[130px] h-[78px] bg-[#8bc34a1a] rounded-[10px] p-[0_11px]">
+        Bosh sahifa
+        <hr class="mt-[8px] text-[#6f914c]" />
+      </button>
+      <button id="bosish" class="w-[102px] h-[78px] flex jusitfy-center items-center gap-[10px]">
+        Kinolar <i class="fa-solid fa-sort-down"></i>
+      </button>
+      
+      <a href="serial.html" class="w-[102px] h-[78px] flex jusitfy-center items-center gap-[10px]">
+        Seriallar
+      </a>
+      <button id="jan" class="w-[102px] h-[78px] flex jusitfy-center items-center gap-[10px]">
+        Janr <i class="fa-solid fa-sort-down"></i>
+      </button>
+      <button id="yill" class="w-[102px] h-[78px] flex jusitfy-center items-center gap-[10px]">
+        Yil <i class="fa-solid fa-sort-down"></i>
+      </button>
+      <button id="till" class="w-[102px] h-[78px] flex jusitfy-center items-center gap-[10px]">
+        Mamlakat <i class="fa-solid fa-sort-down"></i>
+      </button>
+      <a href="yangi.html"><button class="h-[78px]">Kino yangiliklari</button></a>
+    </nav>
+  </div>
+  
+  <div class="sm:hidden top-0 z-[10] flex items-center border-b-[1px] border-gray-800 fixed bg-[#090f17f9] justify-between w-full h-[60px] px-[10px]">  
+    <img class="w-[200px] h-[53px]" src="https://uzmovi.net/images/logo.png" alt="" />
+      <button id="mobileMenuToggle" type="button" aria-label="Menyuni ochish" aria-controls="mobileMenu" aria-expanded="false" class="w-[40px] h-[40px] border-[1px] border-gray-500 rounded-xl">
+        <i class="fa-solid fa-bars text-white"></i>
+      </button>
+  </div>
+
+
+  
+
+
+  <div id="mobileMenu" class="fixed border-t-[1px] border-t-gray-800 inset-x-0 bottom-0 z-[20] w-full sm:hidden bg-[#070b11] h-[690px] max-h-[85vh] overflow-y-auto rounded-t-[12px] translate-y-full transition-transform duration-300 ease-out pointer-events-none">
+    <div class="h-[64px] bg-[#ffffff05] w-full flex items-center px-4 text-white justify-between">
+      <h3 class="text-[18px] font-[700]">Uzmovi katalogi</h3>
+      <button id="mobileMenuClose" type="button" aria-label="Menyuni yopish" class="w-[36px] h-[36px] rounded-full bg-[#1722230] flex items-center justify-center">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="px-[12px] flex flex-col gap-[4px] text-white pt-[8px] pb-[24p]x">
+
+      <div class="px-[13px] py-[8px] flex items-center justify-between border-b-[1px] border-b-gray-800">
+        <span class="text-[14px] inline-block font-[700]">Kinolar</span>
+      </div>  
+      <div class="px-[13px] py-[8px] flex items-center justify-between border-b-[1px] border-b-gray-800">
+        <span class="text-[14px] inline-block font-[700]">Seriallar</span>
+      </div>  
+      <div class="px-[13px] py-[8px] flex items-center justify-between border-b-[1px] border-b-gray-800">
+        <span class="text-[14px] inline-block font-[700]">Janr</span>
+      </div>  
+      <div class="px-[13px] py-[8px] flex items-center justify-between border-b-[1px] border-b-gray-800">
+        <span class="text-[14px] inline-block font-[700]">Yil</span>
+      </div>  
+      <div class="px-[13px] py-[8px] flex items-center justify-between border-b-[1px] border-b-gray-800">
+        <span class="text-[14px] inline-block font-[700]">Mamlakat</span>
+      </div>  
+      <div class="px-[13px] py-[8px] flex items-center justify-between border-b-[1px] border-b-gray-800">
+        <span class="text-[14px] inline-block font-[700]">Kino yangiliklari</span>
+      </div>  
+      <div class="px-[13px] py-[8px] flex items-center justify-between border-b-[1px] border-b-gray-800">
+        <span class="text-[14px] inline-block font-[700]">Eksklyuziv filmlar</span>
+      </div>  
+      <div class="px-[13px] py-[8px] flex items-center justify-between border-b-[1px] border-b-gray-800">
+        <span class="text-[14px] inline-block font-[700]">Premyeralar</span>
+      </div>    
+      <div class="px-[13px] py-[8px] flex items-center justify-between border-b-[1px] border-b-gray-800">
+        <span class="text-[14px] inline-block font-[700]">Kolleksiyalar</span>
+      </div>  
+      <div class="px-[13px] py-[8px] flex items-center justify-between border-b-[1px] border-b-gray-800">
+        <span class="text-[14px] inline-block font-[700]">UZMOVI AI</span>
+      </div>  
+      <div class="px-[13px] py-[8px] flex items-center justify-between border-b-[1px] border-b-gray-800">
+        <span class="text-[14px] inline-block font-[700]">Sevimli filmlar</span>
+      </div>  
+
+    </div>
+  </div>
+
+  <div id="natija"
+    class="absolute top-[78px] left-0 right-0 z-50 p-[10px] bg-[#0d141ef0] w-[330px] h-[270px] rounded-[20px] m-[-20px_auto] translate-x-[7pc] hidden">
+    <div class="w-[308px] h-[20px] flex justify-between items-center">
+      <h3 class="text-[#f7f9fc] text-[14px] font-bold">Kinolar</h3>
+      <h4 class="text-[#748191] text-[9px] font-bold">KATALOG BO'LIMLARI</h4>
+    </div>
+    <button
+      class="w-[308px] h-[48px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px]">
+      <i class="fa-solid fa-circle text-[3px]"></i> Tarjima kinolar
+    </button>
+    <button
+      class="w-[308px] h-[48px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px]">
+      <i class="fa-solid fa-circle text-[3px]"></i> Prem'yerlar
+    </button>
+    <button
+      class="w-[308px] h-[48px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px]">
+      <i class="fa-solid fa-circle text-[3px]"></i> Hind kinolar
+    </button>
+    <button
+      class="w-[308px] h-[48px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px]">
+      <i class="fa-solid fa-circle text-[3px]"></i> Multfilmlar
+    </button>
+    <button
+      class="w-[308px] h-[48px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px]">
+      <i class="fa-solid fa-circle text-[3px]"></i> Kino yangiliklari
+    </button>
+  </div>
+  <div class="absolute top-[78px] left-0 right-0 z-50 w-[720px] h-[210px] rounded-[20px] p-[10px] m-[-20px_auto] translate-x-[20pc] bg-[#0d141ef0] hidden"
+    id="jangovar">
+    <div class="h-[20px] flex justify-between items-center  ">
+      <h3 class="text-[#f7f9fc] text-[14px] font-bold">Jangovar</h3>
+      <h4 class="text-[#748191] text-[9px] font-bold">KAYFIYATINGIZGA MOS YO'NALISH</h4>
+    </div>
+    <div class="flex justify-center items-center gap-[0]   ">
+      <div>
+        <button
+          class="w-[308px] h-[48px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px]">
+          <i class="fa-solid fa-circle text-[3px]"></i> Tarjima kinolar
+        </button>
+        <button
+          class="w-[136px] h-[39px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px]">
+          <i class="fa-solid fa-circle text-[3px]"></i> Jangari
+        </button>
+        <button
+          class="w-[136px] h-[38px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px]">
+          <i class="fa-solid fa-circle text-[3px]"></i> Qo'rqinchili
+        </button>
+        <button
+          class="w-[136px] h-[38px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px]">
+          <i class="fa-solid fa-circle text-[3px]"></i> Triller
+        </button>
+      </div>
+      <div>
+        <button
+          class="w-[136px] h-[39px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px]">
+          <i class="fa-solid fa-circle text-[3px]"></i> Fentezi
+        </button>
+        <button
+          class="w-[136px] h-[38px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px]">
+          <i class="fa-solid fa-circle text-[3px]"></i> Drama
+        </button>
+        <button
+          class="w-[136px] h-[38px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px]">
+          <i class="fa-solid fa-circle text-[3px]"></i> Tarixiy
+        </button>
+        <button
+          class="w-[136px] h-[39px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px]">
+          <i class="fa-solid fa-circle text-[3px]"></i> Detektiv
+        </button>
+      </div>
+      <div>
+        <button
+          class="w-[136px] h-[39px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px]">
+          <i class="fa-solid fa-circle text-[3px]"></i> Hujjatli film
+        </button>
+        <button
+          class="w-[136px] h-[38px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px]">
+          <i class="fa-solid fa-circle text-[3px]"></i> Vester
+        </button>
+        <button
+          class="w-[136px] h-[38px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px]">
+          <i class="fa-solid fa-circle text-[3px]"></i> Melodrama
+        </button>
+        <button
+          class="w-[136px] h-[39px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px]">
+          <i class="fa-solid fa-circle text-[3px]"></i> Fantastika
+        </button>
+      </div>
+      <div>
+        <button
+          class="w-[136px] h-[38px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px]">
+          <i class="fa-solid fa-circle text-[3px]"></i> Anime
+        </button>
+        <button
+          class="w-[136px] h-[38px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px]">
+          <i class="fa-solid fa-circle text-[3px]"></i> Musiqiy
+        </button>
+        <button
+          class="w-[136px] h-[38px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px]">
+          <i class="fa-solid fa-circle text-[3px]"></i> Sarguzasht
+        </button>
+        <button
+          class="w-[136px] h-[38px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px]">
+          <i class="fa-solid fa-circle text-[3px]"></i> Hayotiy
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="absolute top-[78px] left-0 right-0 z-50 w-[471px] h-[251px] p-[10px] bg-[#0d141ef0] rounded-[20px] m-[-20px_auto] translate-x-[30pc] hidden"
+    id="yil">
+    <div class="h-[20px] flex justify-between items-center  ">
+      <h3 class="text-[#f7f9fc] text-[14px] font-bold">Jangovar</h3>
+      <h4 class="text-[#748191] text-[9px] font-bold">KAYFIYATINGIZGA MOS YO'NALISH</h4>
+    </div>
+    <div class="flex ">
+      <div>
+        <button
+          class="w-[108px] h-[38px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px] "><i
+            class="fa-solid fa-circle text-[3px]"></i> 2026</button>
+        <button
+          class="w-[108px] h-[38px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px] "><i
+            class="fa-solid fa-circle text-[3px]"></i> 2022</button>
+        <button
+          class="w-[108px] h-[38px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px] "><i
+            class="fa-solid fa-circle text-[3px]"></i> 2018</button>
+        <button
+          class="w-[108px] h-[38px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px] "><i
+            class="fa-solid fa-circle text-[3px]"></i> 2014</button>
+        <button
+          class="w-[108px] h-[38px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px] "><i
+            class="fa-solid fa-circle text-[3px]"></i> 2010</button>
+      </div>
+      <div>
+        <button
+          class="w-[108px] h-[38px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px] "><i
+            class="fa-solid fa-circle text-[3px]"></i> 2025</button>
+        <button
+          class="w-[108px] h-[38px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px] "><i
+            class="fa-solid fa-circle text-[3px]"></i> 2021</button>
+        <button
+          class="w-[108px] h-[38px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px] "><i
+            class="fa-solid fa-circle text-[3px]"></i> 2017</button>
+        <button
+          class="w-[108px] h-[38px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px] "><i
+            class="fa-solid fa-circle text-[3px]"></i> 2013</button>
+      </div>
+      <div>
+        <button
+          class="w-[108px] h-[38px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px] "><i
+            class="fa-solid fa-circle text-[3px]"></i> 2024</button>
+        <button
+          class="w-[108px] h-[38px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px] "><i
+            class="fa-solid fa-circle text-[3px]"></i> 2020</button>
+        <button
+          class="w-[108px] h-[38px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px] "><i
+            class="fa-solid fa-circle text-[3px]"></i> 2016</button>
+        <button
+          class="w-[108px] h-[38px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px] "><i
+            class="fa-solid fa-circle text-[3px]"></i> 2012</button>
+      </div>
+      <div>
+        <button
+          class="w-[108px] h-[38px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px] "><i
+            class="fa-solid fa-circle text-[3px]"></i> 2023</button>
+        <button
+          class="w-[108px] h-[38px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px] "><i
+            class="fa-solid fa-circle text-[3px]"></i> 2019</button>
+        <button
+          class="w-[108px] h-[38px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px] "><i
+            class="fa-solid fa-circle text-[3px]"></i> 2015</button>
+        <button
+          class="w-[108px] h-[38px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px] "><i
+            class="fa-solid fa-circle text-[3px]"></i> 2011</button>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="absolute top-[78px] left-0 right-0 z-50 w-[720px] h-[210px] rounded-[20px] p-[10px] m-[-20px_auto] translate-x-[20pc] bg-[#0d141ef0] hidden"
+    id="til">
+    <div class="h-[20px] flex justify-between items-center  ">
+      <h3 class="text-[#f7f9fc] text-[14px] font-bold">Jangovar</h3>
+      <h4 class="text-[#748191] text-[9px] font-bold">KAYFIYATINGIZGA MOS YO'NALISH</h4>
+    </div>
+    <div class="flex justify-center items-center gap-[0]   ">
+      <div>
+        <button
+          class="w-[308px] h-[48px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px]">
+          <i class="fa-solid fa-circle text-[3px]"></i> Russia
+        </button>
+        <button
+          class="w-[136px] h-[39px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px]">
+          <i class="fa-solid fa-circle text-[3px]"></i> Xitoy
+        </button>
+        <button
+          class="w-[136px] h-[38px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px]">
+          <i class="fa-solid fa-circle text-[3px]"></i> Buyuk Britaniya
+        </button>
+        <button
+          class="w-[136px] h-[38px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px]">
+          <i class="fa-solid fa-circle text-[3px]"></i> Qozog'iston
+        </button>
+      </div>
+      <div>
+        <button
+          class="w-[136px] h-[39px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px]">
+          <i class="fa-solid fa-circle text-[3px]"></i> Yaponiya
+        </button>
+        <button
+          class="w-[136px] h-[38px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px]">
+          <i class="fa-solid fa-circle text-[3px]"></i> AQSH
+        </button>
+        <button
+          class="w-[136px] h-[38px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px]">
+          <i class="fa-solid fa-circle text-[3px]"></i> Hindiston
+        </button>
+        <button
+          class="w-[136px] h-[39px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px]">
+          <i class="fa-solid fa-circle text-[3px]"></i> Janubiy korea
+        </button>
+      </div>
+      <div>
+        <button
+          class="w-[136px] h-[39px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px]">
+          <i class="fa-solid fa-circle text-[3px]"></i> Fransiya
+        </button>
+        <button
+          class="w-[136px] h-[38px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px]">
+          <i class="fa-solid fa-circle text-[3px]"></i> Turkiya
+        </button>
+        <button
+          class="w-[136px] h-[38px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px]">
+          <i class="fa-solid fa-circle text-[3px]"></i> Avstraliya
+        </button>
+        <button
+          class="w-[136px] h-[39px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px]">
+          <i class="fa-solid fa-circle text-[3px]"></i> Ukraina
+        </button>
+      </div>
+      <div>
+        <button
+          class="w-[136px] h-[38px] p-[8px_11px_8px_13px] text-[#b8c2ce] font-bold text-[12px] flex jusitfy-center items-center gap-[10px]">
+          <i class="fa-solid fa-circle text-[3px]"></i> Eron
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div>
+
+        <!-- TUGMALAR -->
+        <div class="w-[100%] mt-[70px] sm:mt-0 h-[35px] flex justify-end">
+
+            <div class="w-[265px] sm:mt-[10px] h-[35px] flex items-center justify-center rounded-[50px] bg-[#11151A]">
+
+                <button class="w-[68px] h-[28px] text-[11px] p-[4px_11px] bg-[#6F914C] font-[750] rounded-[50px] text-white">
+                    Tasodifiy
+                </button>
+
+                <button class="w-[50px] h-[28px] text-[11px] p-[4px_11px] font-[750] text-[#b6c0cd]">
+                    Yangi
+                </button>
+
+                <button class="text-[11px] text-[#b6c0cd] font-[750]">
+                    <i class="fa-solid fa-heart"></i>
+                    Ko'p like olganlar
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="flex gap-[30px]   items-center overflow-x-auto overflow-y-hidden w-full  h-[109px] mt-[20px] ml-0 sm:px-[20px] scrollbar-custom">
+
+            <button class="w-[80px] h-[90px] shrink-0">
+                <span>
+                    <img class="w-[68px] h-[68px] rounded-[100%] ml-[5px]"
+                    src="https://story.uzmovi.net/2026-09-23/80x80_1790161261_4bc161ab881f7e49e46d63ac.jpg" alt="">
+                </span>
+                <span class="text-[10px] text-[#ffffffdb] font-[650]">
+                    Hotira kundaligi
+                </span>
+            </button>
+
+
+            <button class="w-[80px] h-[90px] shrink-0">
+                <span>
+                    <img class="w-[68px] h-[68px] rounded-[100%] ml-[5px]"
+                    src="https://story.uzmovi.net/2026-09-23/80x80_1790161261_4bc161ab881f7e49e46d63ac.jpg" alt="">
+                </span>
+                <span class="text-[10px] text-[#ffffffdb] font-[650px]">
+                    Hotira kundaligi
+                </span>
+            </button>
+
+
+            <button class="w-[80px] h-[90px] shrink-0">
+                <span>
+                    <img class="w-[68px] h-[68px] rounded-[100%] ml-[5px]"
+                    src="https://story.uzmovi.net/2026-09-23/80x80_1790161261_4bc161ab881f7e49e46d63ac.jpg" alt="">
+                </span>
+                <span class="text-[10px] text-[#ffffffdb] font-[650]">
+                    Hotira kundaligi
+                </span>
+            </button>
+
+
+            <button class="w-[80px] h-[90px] shrink-0">
+                <span>
+                    <img class="w-[68px] h-[68px] rounded-[100%] ml-[5px]"
+                    src="https://story.uzmovi.net/2026-09-23/80x80_1790161261_4bc161ab881f7e49e46d63ac.jpg" alt="">
+                </span>
+                <span class="text-[10px] text-[#ffffffdb] font-[650]">
+                    Hotira kundaligi
+                </span>
+            </button>
+
+
+            <button class="w-[80px] h-[90px] shrink-0">
+                <span>
+                    <img class="w-[68px] h-[68px] rounded-[100%] ml-[5px]"
+                    src="https://story.uzmovi.net/2026-09-23/80x80_1790161261_4bc161ab881f7e49e46d63ac.jpg" alt="">
+                </span>
+                <span class="text-[10px] text-[#ffffffdb] font-[650]">
+                    Hotira kundaligi
+                </span>
+            </button>
+
+
+            <button class="w-[80px] h-[90px] shrink-0">
+                <span>
+                    <img class="w-[68px] h-[68px] rounded-[100%] ml-[5px]"
+                    src="https://story.uzmovi.net/2026-09-23/80x80_1790161261_4bc161ab881f7e49e46d63ac.jpg" alt="">
+                </span>
+                <span class="text-[10px] text-[#ffffffdb] font-[650]">
+                    Hotira kundaligi
+                </span>
+            </button>
+
+
+            <button class="w-[80px] h-[90px] shrink-0">
+                <span>
+                    <img class="w-[68px] h-[68px] rounded-[100%] ml-[5px]"
+                    src="https://story.uzmovi.net/2026-09-23/80x80_1790161261_4bc161ab881f7e49e46d63ac.jpg" alt="">
+                </span>
+                <span class="text-[10px] text-[#ffffffdb] font-[650]">
+                    Hotira kundaligi
+                </span>
+            </button>
+
+
+            <button class="w-[80px] h-[90px] shrink-0">
+                <span>
+                    <img class="w-[68px] h-[68px] rounded-[100%] ml-[5px]"
+                    src="https://story.uzmovi.net/2026-09-23/80x80_1790161261_4bc161ab881f7e49e46d63ac.jpg" alt="">
+                </span>
+                <span class="text-[10px] text-[#ffffffdb] font-[650]">
+                    Hotira kundaligi
+                </span>
+            </button>
+
+
+            <button class="w-[80px] h-[90px] shrink-0">
+                <span>
+                    <img class="w-[68px] h-[68px] rounded-[100%] ml-[5px]"
+                    src="https://story.uzmovi.net/2026-09-23/80x80_1790161261_4bc161ab881f7e49e46d63ac.jpg" alt="">
+                </span>
+                <span class="text-[10px] text-[#ffffffdb] font-[650]">
+                    Hotira kundaligi
+                </span>
+            </button>
+
+
+            <button class="w-[80px] h-[90px] shrink-0">
+                <span>
+                    <img class="w-[68px] h-[68px] rounded-[100%] ml-[5px]"
+                    src="https://story.uzmovi.net/2026-02-14/80x80_prev_6990718565c820.66787709.jpg" alt="">
+                </span>
+                <span class="text-[10px] text-[#ffffffdb] font-[650]">
+                    Muqadima
+                </span>
+            </button>
+
+
+            <button class="w-[80px] h-[90px] shrink-0">
+                <span>
+                    <img class="w-[68px] h-[68px] rounded-[100%] ml-[5px]"
+                    src="https://story.uzmovi.net/2026-02-14/80x80_prev_6990718565c820.66787709.jpg" alt="">
+                </span>
+                <span class="text-[10px] text-[#ffffffdb] font-[650]">
+                    Nafrat
+                </span>
+            </button>
+
+
+            <button class="w-[80px] h-[90px] shrink-0">
+                <span>
+                    <img class="w-[68px] h-[68px] rounded-[100%] ml-[5px]"
+                    src="https://story.uzmovi.net/2026-09-20/80x80_1789864558_f07b27c2bea09d8e310cf780.jpg" alt="">
+                </span>
+                <span class="text-[10px] text-[#ffffffdb] font-[650]">
+                    Vikinlar
+                </span>
+            </button>
+
+
+            <button class="w-[80px] h-[90px] shrink-0">
+                <span>
+                    <img class="w-[68px] h-[68px] rounded-[100%] ml-[5px]"
+                    src="https://story.uzmovi.net/2026-09-20/80x80_1789864558_f07b27c2bea09d8e310cf780.jpg" alt="">
+                </span>
+                <span class="text-[10px] text-[#ffffffdb] font-[650]">
+                    Vikinlar
+                </span>
+            </button>
+
+
+            <button class="w-[80px] h-[90px] shrink-0">
+                <span>
+                    <img class="w-[68px] h-[68px] rounded-[100%] ml-[5px]"
+                    src="https://story.uzmovi.net/2026-09-20/80x80_1789864558_f07b27c2bea09d8e310cf780.jpg" alt="">
+                </span>
+                <span class="text-[10px] text-[#ffffffdb] font-[650]">
+                    Vikinlar
+                </span>
+            </button>
+
+
+            <button class="w-[80px] h-[90px] shrink-0">
+                <span>
+                    <img class="w-[68px] h-[68px] rounded-[100%] ml-[5px]"
+                    src="https://story.uzmovi.net/2026-09-20/80x80_1789864558_f07b27c2bea09d8e310cf780.jpg" alt="">
+                </span>
+                <span class="text-[10px] text-[#ffffffdb] font-[650]">
+                    Vikinlar
+                </span>
+            </button>
+
+
+            <button class="w-[80px] h-[90px] shrink-0">
+                <span>
+                    <img class="w-[68px] h-[68px] rounded-[100%] ml-[5px]"
+                    src="https://story.uzmovi.net/2026-09-20/80x80_1789864558_f07b27c2bea09d8e310cf780.jpg" alt="">
+                </span>
+                <span class="text-[10px] text-[#ffffffdb] font-[650]">
+                    Vikinlar
+                </span>
+            </button>
+
+
+            <button class="w-[80px] h-[90px] shrink-0">
+                <span>
+                    <img class="w-[68px] h-[68px] rounded-[100%] ml-[5px]"
+                    src="https://story.uzmovi.net/2026-09-20/80x80_1789864558_f07b27c2bea09d8e310cf780.jpg" alt="">
+                </span>
+                <span class="text-[10px] text-[#ffffffdb] font-[650]">
+                    Vikinlar
+                </span>
+            </button>
+
+
+            <button class="w-[80px] h-[90px] shrink-0">
+                <span>
+                    <img class="w-[68px] h-[68px] rounded-[100%] ml-[5px]"
+                    src="https://story.uzmovi.net/2026-09-20/80x80_1789864558_f07b27c2bea09d8e310cf780.jpg" alt="">
+                </span>
+                <span class="text-[10px] text-[#ffffffdb] font-[650]">
+                    Vikinlar
+                </span>
+            </button>
+
+
+            <button class="w-[80px] h-[90px] shrink-0">
+                <span>
+                    <img class="w-[68px] h-[68px] rounded-[100%] ml-[5px]"
+                    src="https://story.uzmovi.net/2026-09-14/80x80_1789332244_1e8c418385f487328a0b24d6.jpg" alt="">
+                </span>
+                <span class="text-[10px] text-[#ffffffdb] font-[650]">
+                    Qashqirlar ...
+                </span>
+            </button>
+
+
+            <button class="w-[80px] h-[90px] shrink-0">
+                <span>
+                    <img class="w-[68px] h-[68px] rounded-[100%] ml-[5px]"
+                    src="https://story.uzmovi.net/2026-09-14/80x80_1789332244_1e8c418385f487328a0b24d6.jpg" alt="">
+                </span>
+                <span class="text-[10px] text-[#ffffffdb] font-[650]">
+                    Qashqirlar ...
+                </span>
+            </button>
+
+
+            <button class="w-[80px] h-[90px] shrink-0">
+                <span>
+                    <img class="w-[68px] h-[68px] rounded-[100%] ml-[5px]"
+                    src="https://story.uzmovi.net/2026-09-14/80x80_1789332244_1e8c418385f487328a0b24d6.jpg" alt="">
+                </span>
+                <span class="text-[10px] text-[#ffffffdb] font-[650]">
+                    Qashqirlar ...
+                </span>
+            </button>
+
+
+            <button class="w-[80px] h-[90px] shrink-0">
+                <span>
+                    <img class="w-[68px] h-[68px] rounded-[100%] ml-[5px]"
+                    src="https://story.uzmovi.net/2026-09-14/80x80_1789332244_1e8c418385f487328a0b24d6.jpg" alt="">
+                </span>
+                <span class="text-[10px] text-[#ffffffdb] font-[650]">
+                    Qashqirlar ...
+                </span>
+            </button>
+
+
+            <button class="w-[80px] h-[90px] shrink-0">
+                <span>
+                    <img class="w-[68px] h-[68px] rounded-[100%] ml-[5px]"
+                    src="https://story.uzmovi.net/2026-09-14/80x80_1789332244_1e8c418385f487328a0b24d6.jpg" alt="">
+                </span>
+                <span class="text-[10px] text-[#ffffffdb] font-[650]">
+                    Qashqirlar ...
+                </span>
+            </button>
+
+
+            <button class="w-[80px] h-[90px] shrink-0">
+                <span>
+                    <img class="w-[68px] h-[68px] rounded-[100%] ml-[5px]"
+                    src="https://story.uzmovi.net/2026-09-14/80x80_1789332244_1e8c418385f487328a0b24d6.jpg" alt="">
+                </span>
+                <span class="text-[10px] text-[#ffffffdb] font-[650]">
+                    Qashqirlar ...
+                </span>
+            </button>
+
+
+            <button class="w-[80px] h-[90px] shrink-0">
+                <span>
+                    <img class="w-[68px] h-[68px] rounded-[100%] ml-[5px]"
+                    src="https://story.uzmovi.net/2026-09-14/80x80_1789332244_1e8c418385f487328a0b24d6.jpg" alt="">
+                </span>
+                <span class="text-[10px] text-[#ffffffdb] font-[650]">
+                    Qashqirlar ...
+                </span>
+            </button>
+
+
+            <button class="w-[80px] h-[90px] shrink-0">
+                <span>
+                    <img class="w-[68px] h-[68px] rounded-[100%] ml-[5px]"
+                    src="https://story.uzmovi.net/2026-09-14/80x80_1789332244_1e8c418385f487328a0b24d6.jpg" alt="">
+                </span>
+                <span class="text-[10px] text-[#ffffffdb] font-[650]">
+                    Qashqirlar ...
+                </span>
+            </button>
+
+
+            <button class="w-[80px] h-[90px] shrink-0">
+                <span>
+                    <img class="w-[68px] h-[68px] rounded-[100%] ml-[5px]"
+                    src="https://story.uzmovi.net/2026-09-14/80x80_1789332244_1e8c418385f487328a0b24d6.jpg" alt="">
+                </span>
+                <span class="text-[10px] text-[#ffffffdb] font-[650]">
+                    Qashqirlar ...
+                </span>
+            </button>
+
+
+            <button class="w-[80px] h-[90px] shrink-0">
+                <span>
+                    <img class="w-[68px] h-[68px] rounded-[100%] ml-[5px]"
+                    src="https://story.uzmovi.net/2026-09-14/80x80_1789332244_1e8c418385f487328a0b24d6.jpg" alt="">
+                </span>
+                <span class="text-[10px] text-[#ffffffdb] font-[650]">
+                    Qashqirlar ...
+                </span>
+            </button>
+
+
+        </div>
+
+    </div>
+<div class="bg-[#070c13] border-y-[2px] border-[#2f3237]">
+        <div class="w-[100%] px-[20px] h-[169px] sm:h-[88px] mx-auto flex flex-col justify-center">
+            <div class=" sm:flex">
+            <div class="sm:w-[778px] w-full  flex gap-[30px]">
+                <div class="mt-[20px] sm:mt-0">
+
+                    <button class=" transition text-[#b6c0cd] hover:bg-[#141e19] hover:text-[#fff] hover:border-[#739c48]  text-[#b6c0cd] bg-[#ffffff09] border-[1px] border-[#252a30] w-[72px] h-[40px] rounded-[11px] text-[14px] font-[400]"> <i class="fa-solid fa-user text-[13px]"></i> Kirish</button>
+            
+            
+                    <button class=" transition text-[#b6c0cd] hover:bg-[#141e19] hover:text-[#fff] hover:border-[#739c48] p-[3px] bg-[#ffffff09] border-[1px] border-[#252a30] w-[128px] h-[40px] rounded-[11px] text-[14px] font-[400]">Ro'yhatdan o'tish</button>
+             
+                </div>
+                    <div class="w-[195px] sm:flex hidden justify-between">
+
+                
+                    <button id="tugma" class=" transition text-[#b6c0cd] hover:bg-[#141e19] hover:text-[#fff] hover:border-[#739c48]  text-[#b6c0cd] bg-[#ffffff09] border-[1px] border-[#252a30] w-[40px] h-[40px] rounded-[11px]  font-[400]"> <i class="fa-solid fa-fire"></i></button>
+            
+
+                    <button class=" transition text-[#b6c0cd] hover:bg-[#141e19] hover:text-[#fff] hover:border-[#739c48] p-[3px] bg-[#ffffff09] border-[1px] border-[#252a30] w-[40px] h-[40px] rounded-[11px]  font-[400]"> <i class="fa-solid fa-film"></i></button>
+                    <button class=" transition text-[#b6c0cd] hover:bg-[#141e19] hover:text-[#fff] hover:border-[#739c48] p-[3px] bg-[#ffffff09] border-[1px] border-[#252a30] w-[40px] h-[40px] rounded-[11px]"><i class="fa-solid fa-envelope"></i></button>
+                    <button class=" transition text-[#b6c0cd] hover:bg-[#141e19] hover:text-[#fff] hover:border-[#739c48] p-[3px] bg-[#ffffff09] border-[1px] border-[#252a30] w-[40px] h-[40px] rounded-[11px]  font-[400]"> <i class="fa-solid fa-exclamation-circle"></i></button>
+                </div>
+            </div>
+
+            <div>
+                <div class="w-full sm:m-[0px] mt-[20px] sm:w-[620px] h-[46px] bg-[#272b32] rounded-[11px] flex relative">
+                    <input class="sm:w-[613px] w-full h-[40px] bg-[#ffffff0b] rounded-[11px] pl-[15px] italic text-[#fff] text-[14px] outline-none" type="text" placeholder="Qidirish...">
+                    <button><i class="fa-solid fa-magnifying-glass  absolute right-[10px] top-[14px] text-[#7b8796]"></i></button>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+  <script>
+    const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+    const mobileMenuClose = document.getElementById("mobileMenuClose");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    function setMobileMenuOpen(isOpen) {
+      mobileMenu.classList.toggle("translate-y-full", !isOpen);
+      mobileMenu.classList.toggle("pointer-events-none", !isOpen);
+      mobileMenuToggle.setAttribute("aria-expanded", String(isOpen));
+    }
+
+    mobileMenuToggle.addEventListener("click", function () {
+      setMobileMenuOpen(true);
+    });
+
+    mobileMenuClose.addEventListener("click", function () {
+      setMobileMenuOpen(false);
+    });
+
+    const bosish = document.getElementById("bosish");
+    const natija = document.getElementById("natija");
+    const jan = document.getElementById("jan");
+    const jangovar = document.getElementById("jangovar");
+    const yill = document.getElementById("yill");
+    const yil = document.getElementById("yil");
+    const till = document.getElementById("till");
+    const til = document.getElementById("til");
+
+    bosish.addEventListener("click", function () {
+      if (natija.style.display === "block") {
+        natija.style.display = "none";
+      } else {
+        natija.style.display = "block";
+      }
+    });
+
+    jan.addEventListener("click", function () {
+      if (jangovar.style.display === "block") {
+        jangovar.style.display = "none";
+      } else {
+        jangovar.style.display = "block";
+      }
+    });
+
+    yill.addEventListener("click", function () {
+      if (yil.style.display === "block") {
+        yil.style.display = "none";
+      } else {
+        yil.style.display = "block";
+      }
+    });
+
+    till.addEventListener("click", function () {
+      if (til.style.display === "block") {
+        til.style.display = "none";
+      } else {
+        til.style.display = "block";
+      }
+    });
+
+  </script>
+</body>
+
+</html>

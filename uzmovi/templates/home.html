@@ -1,0 +1,1237 @@
+{% extends "base.html" %} {% load static %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+{% block content %}
+<style>
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    position: relative;
+    height: 100%;
+  }
+
+  h1,
+  p {
+    color: white;
+  }
+
+  swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  swiper-slide img {
+    background-blend-mode: darken;
+    background-color: rgba(0.5, 0.1, 0.3, 0.5);
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+
+  #random-movie-strip swiper-slide {
+    justify-content: flex-start;
+    font-size: 0;
+    line-height: 0;
+  }
+
+  #random-movie-strip h3 {
+    line-height: normal;
+  }
+
+  .container {
+    font-family: sans-serif;
+    font-size: 14px;
+    color: #fff;
+  }
+
+  .slider {
+    width: 1440px;
+    max-width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  .slider-track {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.8s ease;
+  }
+
+  .movie {
+    min-width: 340px;
+    height: 568px;
+    background: #1b232d;
+    border-radius: 15px;
+    padding: 2px;
+    transition: 0.3s;
+  }
+
+  .movie:hover {
+    border: 2px solid #22c55e;
+    transform: scale(1.03);
+  }
+
+  .movie img {
+    width: 340px;
+    height: 474px;
+    object-fit: cover;
+    border-radius: 15px;
+    display: block;
+  }
+
+  @media (max-width: 700px) {
+    .movie {
+      min-width: 280px;
+    }
+
+    .movie img {
+      width: 280px;
+      height: 400px;
+    }
+  }
+
+  .container {
+    height: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .movie-slider {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .movie-track {
+    display: flex;
+    transition: transform 0.4s ease;
+  }
+
+  .movie-slide {
+    flex: 0 0 100%;
+  }
+</style>
+
+<div
+  class="w-[44px] h-[44px] rounded-full bg-blue-400 flex items-center justify-center fixed z-[10] right-[10px] bottom-[10px]"
+>
+  <i class="fa-solid fa-paper-plane text-white"></i>
+</div>
+
+<div class="relative px-[20px]">
+  <div>
+    <h1 class="text-[25px] ml-0 sm:ml-[4pc] mb-[20px] mt-[20px] text-[#FFFFFF]">
+      Premyeralar
+    </h1>
+  </div>
+  <swiper-container
+    class="mySwiper"
+    pagination="true"
+    pagination-clickable="true"
+    navigation="true"
+    space-between="30"
+    centered-slides="true"
+    autoplay-delay="2500"
+    autoplay-disable-on-interaction="false"
+  >
+    {% for banner in main_banners %}
+    <swiper-slide class="relative w-full h-[601px]">
+      <img
+        class="absolute inset-0 w-full h-full object-cover"
+        src="{{ banner.img.url }}"
+        alt="{{ banner.title }}"
+      />
+
+      <div class="absolute inset-0 bg-black/40"></div>
+
+      <div class="absolute left-[8%] top-1/2 -translate-y-1/2 z-10">
+        <h1 class="text-lime-400 font-bold text-2xl">Yangi Premyeria</h1>
+
+        <h2 class="text-white font-bold text-[40px] mt-5">
+          {{ banner.description }}
+        </h2>
+
+        <p class="text-white font-bold text-[30px] mt-5">
+          Premyera o'zbek tilida
+        </p>
+
+        <p class="text-white font-bold text-[30px] mt-3">Onlayn ko'rish</p>
+
+        <button class="bg-lime-400 font-bold mt-8 px-6 py-3 rounded-3xl">
+          Tomosha qilish
+        </button>
+      </div>
+    </swiper-slide>
+    {% empty %}
+  
+    {% endfor %}
+  </swiper-container>
+
+  
+
+  <section
+    class="container w-[100%] bg-[#070c13] h-[594px] pt-[63px] pb-[83px] px-[40px]"
+  >
+    <div class="w-[100%] h-[87px] mb-[22px] sm:flex items-end justify-between">
+      <div>
+        <span
+          class="inline-block tracking-[1px] text-[9px] sm:text-[10px] text-[#8bc34a] uppercase font-[700]"
+          >Real vaqt reytingi</span
+        >
+        <h2 class="sm:text-[44px] text-[28px] font-[700]">TOP 10</h2>
+        <p class="text-[12px] text-gray-400">
+          Bugun va so‘nggi 7 kunda eng ko‘p tomosha qilinganlar.
+        </p>
+      </div>
+      <div
+        class="w-[197px] mt-[10px] sm:mt-0 h-[49px] rounded-[12px] border-[1px] border-gray-700 bg-[#ffffff09] p-[4px] gap-[5px] flex items-center"
+      >
+        <button
+          class="btn1 w-[92px] h-[40px] text-black text-[12px] font-[700] rounded-[10px] bg-[#8bc34a]"
+        >
+          Kunlik
+        </button>
+        <button
+          class="btn2 w-[92px] h-[40px] text-[12px] font-[700] rounded-[10px] text-[#7f8b9b]"
+        >
+          Haftalik
+        </button>
+      </div>
+    </div>
+    <swiper-container
+      class="mySwiper mt-[80px] sm:mt-0"
+      slides-per-view="1"
+      free-mode="true"
+      breakpoints='{
+        "1024": {
+            "slidesPerView": 5
+        }
+    }'
+    >
+    {% for movie in movies %}
+<swiper-slide class="flex items-end gap-[10px]">
+  <span class="text-[100px] inline-block text-[#8bc34a] font-[700]">{{ forloop.counter }}</span>
+
+  <div class="w-[100%]">
+    <div class="relative w-[166px] h-[249px]">
+      <img
+        class="w-[166px] h-[249px] hover:w-[170px] duration-[0.2s] hover:h-[253px] hover:border-[#8bc34a] rounded-[16px] border-[0.1px] border-gray-700 object-cover"
+        src="{{ movie.img.url }}"
+        alt="{{ movie.nomi }}"
+      />
+
+      <span class="flex items-center justify-center absolute bottom-[10px] right-[10px] z-[20] w-[52px] h-[22px] bg-[#000000] border-[1px] border-gray-800 rounded-[10px] text-[12px] font-[700] text-[#ffffff]">
+        {% if movie.is_serial %}serial{% else %}film{% endif %}
+      </span>
+    </div>
+
+    <div class="w-[166px]">
+      <h3 class="font-[600] mt-[10px]">{{ movie.nomi }}</h3>
+      <span class="text-gray-400 text-[10px]">1 420 ko'rish</span>
+    </div>
+  </div>
+</swiper-slide>
+{% endfor %}
+    </swiper-container>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@14.0.1/swiper-element-bundle.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@14.0.1/swiper-element-bundle.min.js"></script>
+</div>
+
+<!-- Temurbek -->
+
+<div class="sliderr">
+  <p
+    class="w-[200px] mb-[15px] border-l-[2px] border-b-[2px] border-green-500 text-[28px] font-[600]"
+  >
+    Tarjima kinolar
+  </p>
+
+  <div
+    id="sliderTrack"
+    style="scrollbar-width: none"
+    class="slider-track overflow-x-auto sm:px-[20px] py-[30px]"
+  >
+    <div class="movie">
+      <img
+        src="https://images.uzmovi.net/2026-09-24/dbb669bee4cb3e5c89765bb2c5be5f3b.jpg"
+      />
+      <p class="text-center mt-[10px] px-[10px]">
+        Sher zarbasi / birinchi 2026 premyera uzbek o'zbek tilida…
+      </p>
+    </div>
+
+    <div class="movie">
+      <img
+        src="https://images.uzmovi.net/2026-09-23/bac9b05fa8119b7d88a0f6f32ddf5601.jpg"
+      />
+      <p class="text-center mt-[10px] px-[10px]">
+        Portlash / Oilaviy qasos 2026 hind kino uzbek o'zbek…
+      </p>
+    </div>
+
+    <div class="movie">
+      <img
+        src="https://images.uzmovi.net/2026-09-18/361ff4d24908790496731c1ce257f5b9.jpg"
+      />
+      <p class="text-center mt-[10px] px-[10px]">
+        O'zga yurtlik ayol barcha qismlari Uzbek O'zbek tilida…
+      </p>
+    </div>
+
+    <div class="movie">
+      <img
+        src="https://images.uzmovi.net/2026-09-23/d7f114d5409db37b0678de785e6e9000.jpg"
+      />
+      <p class="text-center mt-[10px] px-[10px]">
+        Ivan Ivanovich va Ivan Nikiforovich orasidagi nizo uzbek…
+      </p>
+    </div>
+
+    <div class="movie">
+      <img
+        src="https://images.uzmovi.net/2026-09-24/9313e68ffd57f66ef0fe5fcbe5978bb8.jpg"
+      />
+      <p class="text-center mt-[10px] px-[10px]">
+        Yo'qolgan kelinlar / xonimlar hind kino premyera uzbek…
+      </p>
+    </div>
+
+    <div class="movie">
+      <img
+        src="https://images.uzmovi.net/2026-09-24/8c13c2a66c22e60a6960032599cf8bec.jpg"
+      />
+      <p class="text-center mt-[10px] px-[10px]">
+        Xo'rlanganlar va haqoratlanganlar SSSR filmi uzbek o'zbek…
+      </p>
+    </div>
+
+    <div class="movie">
+      <img
+        src="https://images.uzmovi.net/2026-09-24/254c059e93e42bd7a024d0d0724f05ee.jpg"
+      />
+      <p class="text-center mt-[10px] px-[10px]">
+        Gandhari 2026 hind kino premyera uzbek o'zbek tilida…
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Temurbek -->
+
+<!-- Bexruzbek -->
+<div
+  class="w-full sm:w-[577px] h-[43px] p-[0_0_2px_17px] m-[10px_0_18px] flex items-center gap-[10px]"
+>
+  <div class="w-[3px] h-[50px] bg-[#8bc34a]"></div>
+  <h1 class="font-bold text-[#fff] text-[28px]">Multfilmlar</h1>
+</div>
+<div
+  class="sm:flex jusitfy-center w-[100%] items-center gap-[20px] sm:px-[20px]"
+>
+  <div
+    class="movie-carousel relative sm:w-[570px] w-full h-[394px] overflow-hidden bg-[#0d141d] rounded-[10px] text-center"
+  >
+    <div
+      id="movieTrack"
+      class="flex h-full transition-transform duration-500 ease-in-out"
+    >
+      <div class="movie-slide shrink-0 w-full h-full">
+        <div class="relative mx-[10px] mt-[10px] h-[316px]">
+          <button
+            type="button"
+            aria-label="Tomosha qilish"
+            class="absolute left-1/2 top-1/2 z-[1] flex h-[80px] w-[80px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#0f1520]"
+          >
+            <i class="fa-solid fa-play text-[30px] text-[#fc1a3f]"></i>
+          </button>
+          <img
+            class="h-full w-full rounded-[10px] object-cover"
+            src="https://images.uzmovi.net/2026-08-17/262cf81b783e19d2d672b0fc576ff926.jpg"
+            alt="GOAT: Katta orzular sari"
+          />
+        </div>
+        <div
+          class="h-[62px] w-full p-[12px_13px_14px] text-[13px] font-bold text-[#f7f9fc]"
+        >
+          <h2>
+            GOAT: Katta orzular sari 2026 multfilm Uzbek tilida Onlayn Ko'rish
+          </h2>
+        </div>
+      </div>
+
+      <div class="movie-slide shrink-0 w-full h-full">
+        <div class="relative mx-[10px] mt-[10px] h-[316px]">
+          <button
+            type="button"
+            aria-label="Tomosha qilish"
+            class="absolute left-1/2 top-1/2 z-[1] flex h-[80px] w-[80px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#0f1520]"
+          >
+            <i class="fa-solid fa-play text-[30px] text-[#fc1a3f]"></i>
+          </button>
+          <img
+            class="h-full w-full rounded-[10px] object-cover"
+            src="https://images.uzmovi.net/2026-09-20/315d5d9a2401cdbb043e72d54be4e1cc.jpg"
+            alt=""
+          />
+        </div>
+        <div
+          class="h-[62px] w-full p-[12px_13px_14px] text-[13px] font-bold text-[#f7f9fc]"
+        >
+          <h2>Koyot Akmega qarshi: Ayyor koyot 2026 multfilm Uzbek tilida</h2>
+        </div>
+      </div>
+
+      <div class="movie-slide shrink-0 w-full h-full">
+        <div class="relative mx-[10px] mt-[10px] h-[316px]">
+          <button
+            type="button"
+            aria-label="Tomosha qilish"
+            class="absolute left-1/2 top-1/2 z-[1] flex h-[80px] w-[80px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#0f1520]"
+          >
+            <i class="fa-solid fa-play text-[30px] text-[#fc1a3f]"></i>
+          </button>
+          <img
+            class="h-full w-full rounded-[10px] object-cover"
+            src="https://images.uzmovi.net/2026-07-01/2d3862e183566dfe256c38322fc7fd08.jpg"
+            alt=""
+          />
+        </div>
+        <div
+          class="h-[62px] w-full p-[12px_13px_14px] text-[13px] font-bold text-[#f7f9fc]"
+        >
+          <h2>
+            Minionlar va maxluqlar premyera Uzbek O'zbek tilida Onlayn ko'rish
+          </h2>
+        </div>
+      </div>
+
+      <div class="movie-slide shrink-0 w-full h-full">
+        <div class="relative mx-[10px] mt-[10px] h-[316px]">
+          <button
+            type="button"
+            aria-label="Tomosha qilish"
+            class="absolute left-1/2 top-1/2 z-[1] flex h-[80px] w-[80px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#0f1520]"
+          >
+            <i class="fa-solid fa-play text-[30px] text-[#fc1a3f]"></i>
+          </button>
+          <img
+            class="h-full w-full rounded-[10px] object-cover"
+            src="https://images.uzmovi.net/2026-06-23/072dfda858a55db4b9712e65d1e55c18.jpg"
+            alt=""
+          />
+        </div>
+        <div
+          class="h-[62px] w-full p-[12px_13px_14px] text-[13px] font-bold text-[#f7f9fc]"
+        >
+          <h2>
+            O'yinchoqlar tarixi 5 Uzbek tilida premyera multfilm Onlayn ko'rish
+          </h2>
+        </div>
+      </div>
+    </div>
+    <button
+      id="prevMovie"
+      type="button"
+      aria-label="Oldingi multfilm"
+      class="absolute hover:bg-red-500 left-0 top-1/2 z-[2] flex h-[56px] w-[44px] -translate-y-1/2 items-center justify-center bg-[#070b11d1]"
+    >
+      <i class="fa-solid fa-chevron-left text-[15px] text-white"></i>
+    </button>
+    <button
+      id="nextMovie"
+      type="button"
+      aria-label="Keyingi multfilm"
+      class="absolute hover:bg-red-500 right-0 top-1/2 z-[2] flex h-[56px] w-[44px] -translate-y-1/2 items-center justify-center bg-[#070b11d1]"
+    >
+      <i class="fa-solid fa-chevron-right text-[15px] text-white"></i>
+    </button>
+  </div>
+
+  <script>
+    const movieTrack = document.getElementById("movieTrack");
+    const movieSlides = movieTrack.querySelectorAll(".movie-slide");
+    let currentMovieIndex = 0;
+
+    function showMovie(index) {
+      currentMovieIndex = (index + movieSlides.length) % movieSlides.length;
+      movieTrack.style.transform = `translateX(-${currentMovieIndex * 100}%)`;
+    }
+
+    document.getElementById("nextMovie").addEventListener("click", () => {
+      showMovie(currentMovieIndex + 1);
+    });
+
+    document.getElementById("prevMovie").addEventListener("click", () => {
+      showMovie(currentMovieIndex - 1);
+    });
+  </script>
+
+  <div
+    class="sm:w-[617px] sm:mt-0 mt-[20px] w-full h-[421px] p-[18px] m-[0_0_18px] bg-[#0f1520] rounded-[10px]"
+  >
+    <div
+      class="flex justify-between items-center w-[100%] h-[47px] m-[0_0_14px]"
+    >
+      <div class="w-[162px] h-[47px]">
+        <h2
+          class="text-[#7f8b9b] font-bold text-[9px] tracking-[1px] mb-[10px]"
+        >
+          KINO OLAMIDAN
+        </h2>
+        <h2 class="text-[#fff] text-[21px] m-[3px_0_0] font-semibold">
+          Kino yangiliklari
+        </h2>
+      </div>
+      <h4 class="text-[#a7e95f] text-[11px] font-bold">
+        Barchasi <i class="fa-solid fa-arrow-right"></i>
+      </h4>
+    </div>
+    <div class="relative">
+      <img
+        class="mt-[15px] rounded-[10px] w-full sm:w-[779px] h-[178px] object-cover"
+        src="https://kinochi.net/uploads/450x450/dde6a65cb80ac76f448ddb006a13ec1a.jpg"
+        alt=""
+      />
+      <div class="sm:w-[530px] w-full h-[178px] p-[20px] absolute top-[50px]">
+        <h4 class="text-[#95c965] font-bold tracking-[1px] text-[11px]">
+          GOLLIVUD OLAMI
+        </h4>
+        <h2
+          class="text-[14px] sm:text-[16px] text-[#fff] font-bold m-[10px_0] sm:w-[417px]"
+        >
+          "Kliff Butning Saqguzashtlari" filmdan yangi <br />
+          treylar namoyish qilindi
+        </h2>
+        <h4 class="font-bold text-[10px] m-[12px_0_0] text-[#ffffffa6]">
+          O'qish
+        </h4>
+      </div>
+    </div>
+    <div class="flex justify-between gap-[10px] items-center">
+      <div>
+        <div
+          class="sm:w-[286px] w-[350px] h-[63px] rounded-[10px] bg-[#ffffff06] p-[6px] flex justify-between items-center gap-[10px] mt-[10px]"
+        >
+          <img
+            class="w-[50px] h-[50px] rounded-[10px] object-cover"
+            src="https://kinochi.net/uploads/450x450/60c9376a844f6b04c09e34bfb2551744.png"
+            alt=""
+          />
+          <div>
+            <h6 class="text-[8px] text-[#87c93e]">Marvel va DC olami</h6>
+            <h2 class="text-[10px] font-bold text-[#ffffffe6]">
+              Rasman " Daradevil: Qayta tug'ilish " seraili 3-mavsumdan keyin
+              yakunlandi
+            </h2>
+          </div>
+        </div>
+        <div
+          class="sm:w-[286px] w-[350px] h-[63px] rounded-[10px] bg-[#ffffff06] p-[6px] flex justify-between items-center gap-[10px] mt-[10px]"
+        >
+          <img
+            class="w-[50px] h-[50px] rounded-[10px] object-cover"
+            src="https://kinochi.net/uploads/450x450/5b3db172c2efe03ef49f800cdb2867ab.jpg"
+            alt=""
+          />
+          <div>
+            <h6 class="text-[8px] text-[#87c93e]">Premyera</h6>
+            <h2 class="text-[10px] font-bold text-[#ffffffe6]">
+              Rasman " Daradevil: Qayta tug'ilish " seraili 3-mavsumdan keyin
+              yakunlandi
+            </h2>
+          </div>
+        </div>
+      </div>
+      <div class="sm:block hidden flex flex-col sm:gap-[10px]">
+        <div
+          class="w-[286px] h-[63px] rounded-[10px] bg-[#ffffff06] p-[6px] flex justify-between items-center gap-[10px] mt-[10px]"
+        >
+          <img
+            class="w-[50px] h-[50px] rounded-[10px] object-cover"
+            src="https://kinochi.net/uploads/450x450/f2419dcffdd26cab0a071b007502521a.jpg"
+            alt=""
+          />
+          <div>
+            <h6 class="text-[8px] text-[#87c93e]">Yulduzlar hayoti</h6>
+            <h2 class="text-[10px] font-bold text-[#ffffffe6]">
+              Rasman " Daradevil: Qayta tug'ilish " seraili 3-mavsumdan keyin
+              yakunlandi
+            </h2>
+          </div>
+        </div>
+        <div
+          class="w-[286px] h-[63px] rounded-[10px] bg-[#ffffff06] p-[6px] flex justify-between items-center gap-[10px] mt-[10px]"
+        >
+          <img
+            class="w-[50px] h-[50px] rounded-[10px] object-cover"
+            src="https://kinochi.net/uploads/450x450/c6165caf0b77319c8538e874e74acdc8.jpg"
+            alt=""
+          />
+          <div>
+            <h6 class="text-[8px] text-[#87c93e]">Gollivud olami</h6>
+            <h2 class="text-[10px] font-bold text-[#ffffffe6]">
+              Rasman " Daradevil: Qayta tug'ilish " seraili 3-mavsumdan keyin
+              yakunlandi
+            </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Bexruzbek -->
+
+<!-- Abdulhakim -->
+<div class="relative px-[20px]">
+  <button
+    class="bg-[#101923] w-[100%] h-[66px] rounded-xl border-[1px] border-[#f2f2f2] mt-[20px]"
+  ></button>
+  <button
+    class="bg-[#FFFFFF09] w-[112px] h-[44px] rounded-xl border-[1px] border-[#f2f2f2] absolute mt-[30px] ml-[-54pc]"
+  >
+    <i class="fa-solid fa-print text-white"></i>
+  </button>
+  <button
+    class="bg-[#FFFFFF09] w-[112px] h-[44px] rounded-xl border-[1px] border-[#f2f2f2] absolute mt-[30px] ml-[-62pc]"
+  >
+    <img
+      class="w-[33px] h-[33px] ml-[35px]"
+      src="https://img.icons8.com/?size=48&id=5mIvDYZUWDCF&format=png"
+      alt=""
+    />
+  </button>
+  <button
+    class="bg-[#FFFFFF09] w-[112px] h-[44px] rounded-xl border-[1px] border-[#f2f2f2] absolute mt-[30px] ml-[-46pc]"
+  >
+    <i class="fa-brands fa-tiktok text-white"></i>
+  </button>
+  <button
+    class="bg-[#FFFFFF09] w-[112px] h-[44px] rounded-xl border-[1px] border-[#f2f2f2] absolute mt-[30px] ml-[-38pc]"
+  >
+    <i class="fa-brands fa-instagram text-white"></i>
+  </button>
+  <div>
+    <div class="flex gap-[20px]">
+      <div
+        class="sm:w-[600px] w-[182px] sm:h-[340px] h-[222px] bg-[#101923] rounded-xl mt-[4pc]"
+      >
+        <div class="flex flex sm:mt-0 mt-[20px] items-center justify-center">
+          <img
+            src="https://images.uzmovi.net/ii/1600517282/32b8ad1f/31677114.jpg"
+            class="sm:w-[141px] sm:block hidden w-[62px] h-[93px] sm:h-[250px] object-cover rounded-xl"
+          />
+
+          <img
+            src="https://images.uzmovi.net/ii/1551810321/3947e420/25650474.jpg"
+            class="sm:w-[141px] sm:block hidden w-[62px] h-[93px] sm:h-[250px] object-cover rounded-xl"
+          />
+
+          <img
+            src="https://images.uzmovi.net/ii/1569158765/a23732e4/27944689.jpg"
+            class="sm:w-[141px] w-[62px] h-[93px] sm:h-[250px] object-cover rounded-xl"
+          />
+
+          <img
+            src="https://images.uzmovi.net/ii/1603963798/17bb9339/32116836.jpg"
+            class="sm:w-[141px] w-[62px] h-[93px] sm:h-[250px] object-cover rounded-xl"
+          />
+        </div>
+        <div>
+          <h1 class="sm:text-[25px] text-[13px] font-bold ml-[15px] mt-[8px]">
+            Mafiya va gangsterlar
+          </h1>
+          <p class="text-[11px] sm:block hidden ml-[15px]">
+            jinoiy sulolar, gangsterlar, karterlar va yashirinimperyalar
+            haqidagi saralangan asarlar
+          </p>
+        </div>
+      </div>
+      <div
+        class="sm:w-[600px] w-[182px] sm:h-[340px] h-[222px] bg-[#101923] rounded-xl mt-[4pc]"
+      >
+        <div class="flex flex sm:mt-0 mt-[20px] items-center justify-center">
+          <img
+            src="https://images.uzmovi.net/ii/1600517282/32b8ad1f/31677114.jpg"
+            class="sm:w-[141px] sm:block hidden w-[62px] h-[93px] sm:h-[250px] object-cover rounded-xl"
+          />
+
+          <img
+            src="https://images.uzmovi.net/ii/1551810321/3947e420/25650474.jpg"
+            class="sm:w-[141px] w-[62px] h-[93px] sm:h-[250px] object-cover rounded-xl"
+          />
+
+          <img
+            src="https://images.uzmovi.net/ii/1569158765/a23732e4/27944689.jpg"
+            class="sm:w-[141px] sm:block hidden w-[62px] h-[93px] sm:h-[250px] object-cover rounded-xl"
+          />
+
+          <img
+            src="https://images.uzmovi.net/ii/1603963798/17bb9339/32116836.jpg"
+            class="sm:w-[141px] w-[62px] h-[93px] sm:h-[250px] object-cover rounded-xl"
+          />
+        </div>
+        <div>
+          <h1 class="sm:text-[25px] text-[13px] font-bold ml-[15px] mt-[8px]">
+            Kosmosdagi sarguzashtlar
+          </h1>
+          <p class="text-[11px] sm:block hidden ml-[15px]">
+            jinoiy sulolar, gangsterlar, karterlar va yashirinimperyalar
+            haqidagi saralangan asarlar
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="flex gap-[20px]">
+      <div
+        class="sm:w-[600px] w-[182px] sm:h-[340px] h-[222px] bg-[#101923] rounded-xl mt-[4pc]"
+      >
+        <div class="flex flex sm:mt-0 mt-[20px] items-center justify-center">
+          <img
+            src="https://images.uzmovi.net/ii/1600517282/32b8ad1f/31677114.jpg"
+            class="sm:w-[141px] sm:block hidden w-[62px] h-[93px] sm:h-[250px] object-cover rounded-xl"
+          />
+
+          <img
+            src="https://images.uzmovi.net/ii/1551810321/3947e420/25650474.jpg"
+            class="sm:w-[141px] sm:block hidden w-[62px] h-[93px] sm:h-[250px] object-cover rounded-xl"
+          />
+
+          <img
+            src="https://images.uzmovi.net/ii/1569158765/a23732e4/27944689.jpg"
+            class="sm:w-[141px] w-[62px] h-[93px] sm:h-[250px] object-cover rounded-xl"
+          />
+
+          <img
+            src="https://images.uzmovi.net/ii/1603963798/17bb9339/32116836.jpg"
+            class="sm:w-[141px] w-[62px] h-[93px] sm:h-[250px] object-cover rounded-xl"
+          />
+        </div>
+        <div>
+          <h1 class="sm:text-[25px] text-[13px] font-bold ml-[15px] mt-[8px]">
+            Super qahramonlar olami
+          </h1>
+          <p class="text-[11px] sm:block hidden ml-[15px]">
+            jinoiy sulolar, gangsterlar, karterlar va yashirinimperyalar
+            haqidagi saralangan asarlar
+          </p>
+        </div>
+      </div>
+      <div
+        class="sm:w-[600px] w-[182px] sm:h-[340px] h-[222px] bg-[#101923] rounded-xl mt-[4pc]"
+      >
+        <div class="flex flex items-center sm:mt-0 mt-[20px] justify-center">
+          <img
+            src="https://images.uzmovi.net/ii/1600517282/32b8ad1f/31677114.jpg"
+            class="sm:w-[141px] sm:block hidden w-[62px] h-[93px] sm:h-[250px] object-cover rounded-xl"
+          />
+
+          <img
+            src="https://images.uzmovi.net/ii/1551810321/3947e420/25650474.jpg"
+            class="sm:w-[141px] sm:block hidden w-[62px] h-[93px] sm:h-[250px] object-cover rounded-xl"
+          />
+
+          <img
+            src="https://images.uzmovi.net/ii/1569158765/a23732e4/27944689.jpg"
+            class="sm:w-[141px] w-[62px] h-[93px] sm:h-[250px] object-cover rounded-xl"
+          />
+
+          <img
+            src="https://images.uzmovi.net/ii/1603963798/17bb9339/32116836.jpg"
+            class="sm:w-[141px] w-[62px] h-[93px] sm:h-[250px] object-cover rounded-xl"
+          />
+        </div>
+        <div>
+          <h1 class="sm:text-[25px] text-[13px] font-bold ml-[15px] mt-[8px]">
+            Sehrgarlar va sehrli olam
+          </h1>
+          <p class="text-[11px] sm:block hidden ml-[15px]">
+            jinoiy sulolar, gangsterlar, karterlar va yashirinimperyalar
+            haqidagi saralangan asarlar
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Abdulhakim -->
+
+<!-- Abdulloh -->
+<section
+  class="px-[20px] w-[100%] pt-[20px] py-[30px] sm:flex gap-[20px] bg-[#070b11]"
+>
+  <div
+    class="sm:w-[442px] w-full h-[788px] p-[16px] rounded-[15px] bg-[#111b26]"
+  >
+    <div
+      class="w-[100%] h-[30px] pl-[12px] border-b-[1px] border-b-gray-800 pb-[9px] mb-[12px] border-l-[2px] border-l-green-400"
+    >
+      <h3 class="font-[700] text-white">Tasodifiy filmlar</h3>
+    </div>
+
+    <div
+      id="random-movie-strip"
+      class="flex items-start w-[325px] sm:w-[400px] overflow-x-auto"
+      style="scrollbar-width: none"
+    >
+      <div
+        class="flex items-start gap-[10px] sm:w-[400px] w-[370px] owerflow-hidden"
+      >
+        <swiper-slide
+          class="flex-none sm:w-[400px] w-[324px] hover:border-green-800 mt-[8px] flex items-center transition justify-center flex-col border-[1px] rounded-[10px] border-gray-800"
+        >
+          <img
+            class="rounded-[10px] sm:w-[397px] w-[334px] h-[596px] object-cover"
+            src="https://images.uzmovi.net/2025-08-03/06533e1a374f72d379c274c5a279678a.jpg"
+            alt=""
+          />
+
+          <div
+            class="rounded-b-[10px] text-center py-[8px] px-[11px] border-b-[1px] border-x-[1px] w-[100%] border-gray-800 h-[60px]"
+          >
+            <h3 class="text-white text-[14px] font-[700]">
+              Daxshatli orol premyera Uzbek O'zbek tilida onlayn ko'rish
+            </h3>
+          </div>
+        </swiper-slide>
+
+        <swiper-slide
+          class="flex-none w-[400px] hover:border-green-800 mt-[8px] border-[1px] flex items-center justify-center flex-col rounded-[10px] border-gray-800"
+        >
+           
+          <img
+            class="rounded-[10px] w-[397px] h-[596px] object-cover"
+            src="https://images.uzmovi.net/2024-05-17/3b63e4b7e431d6b03aecb9d178093d14.jpeg"
+            alt=""
+          />
+
+           
+          <div
+            class="rounded-b-[10px] text-center py-[8px] px-[11px] border-b-[1px] border-x-[1px] w-[100%] border-gray-800 h-[60px]"
+          >
+               
+            <h3 class="text-white text-[14px] font-[700]">
+                    Umr shomi Uzbek O'zbek tilida Onlayn ko'rish    
+            </h3>
+             
+          </div>
+        </swiper-slide>
+
+        <swiper-slide
+          class="flex-none w-[400px] hover:border-green-800 mt-[8px] border-[1px] flex items-center justify-center flex-col rounded-[10px] border-gray-800"
+        >
+          <img
+            class="rounded-[10px] w-[397px] h-[596px] object-cover"
+            src="https://images.uzmovi.net/2025-02-05/fbbb1e9fdd2f1072d42e84c6f79221ed.jpg"
+            alt=""
+          />
+
+          <div
+            class="rounded-b-[10px] text-center py-[8px] px-[11px] border-b-[1px] border-x-[1px] w-[100%] border-gray-800 h-[60px]"
+          >
+            <h3 class="text-white text-[14px] font-[700]">
+              Tansoqchilar premyera uzbek o'zbek barcha qismlari
+            </h3>
+          </div>
+        </swiper-slide>
+
+        <swiper-slide
+          class="flex-none w-[400px] hover:border-green-800 mt-[8px] border-[1px] flex items-center justify-center flex-col rounded-[10px] border-gray-800"
+        >
+          <img
+            class="rounded-[10px] w-[397px] h-[596px] object-cover"
+            src="https://images.uzmovi.net/ii/1565791809/de821d6b/27540910.jpg"
+            alt=""
+          />
+
+          <div
+            class="rounded-b-[10px] text-center py-[8px] px-[11px] border-b-[1px] border-x-[1px] w-[100%] border-gray-800 h-[60px]"
+          >
+            <h3 class="text-white text-[14px] font-[700]">
+              Ziqna Uzbek O'zbek tilida Onlayn ko'rish
+            </h3>
+          </div>
+        </swiper-slide>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="sm:w-[773px] w-full sm:mt-0 mt-[20px] h-[810px] rounded-[15px] border-[1px] border-gray-800 bg-[#111b26]"
+  >
+    <div
+      data-yopil-header
+      class="w-[100%] rounded-t-[15px] bg-[#8bc34a1a] h-[54px] px-[15px] pb-[9px] flex items-center justify-between border-l-[2px] border-l-green-400"
+    >
+      <h3 class="font-[700] text-[12px] uppercase text-white">
+        Yuqori reytingda
+      </h3>
+      <button
+        data-yopil-toggle
+        type="button"
+        aria-expanded="true"
+        aria-controls="yopil"
+        class="w-[23px] h-[23px] flex items-center justify-center text-green-300 rounded-[8px] border-[1px] border-green-300"
+      >
+        <i class="fa-solid fa-minus"></i>
+      </button>
+    </div>
+
+    <div id="yopil" class="flex flex-col w-[100%] p-[10px]">
+      <div
+        class="bg-[#ffffff06] flex gap-[10px] hover:border-green-800 duration-[0.4s] rounded-[10px] w-[100%] h-[120px] mb-[8px] border-[1px] border-gray-700 p-[9px]"
+      >
+        <img
+          class="w-[54px] h-[68px] object-cover border-[2px] border-gray-700 rounded-[3px]"
+          src="https://images.uzmovi.net/2024-12-09/1437e38b17a5350aa0965b0d4bf22349.jpg"
+          alt=""
+        />
+        <div>
+          <h2 class="text-[12px] uppercase font-[600] text-[#a5bbdc]">
+            O'rgimchak-odam:Uyga yo'l yo'q uzbek o'zbek tilida onlayn ko'rish
+          </h2>
+          <p class="text-gray-500 text-[11px] ml-[10px] mt-[8px] sm:mt-[20px]">
+            Tarjima kinolar
+          </p>
+          <div class="flex items-center ml-[10px] mt-[8px] sm:mt-[15px]">
+            <div
+              class="w-[30px] flex items-center justify-center text-green-300 h-[30px] rounded-l-[30px] bg-[#232f3d]"
+            >
+              <i class="fas fa-thumbs-up"></i>
+            </div>
+            <div
+              class="w-[55px] h-[30px] px-[4px] border-x-[1px] border-gray-500 flex items-center justify-center"
+            >
+              <p class="text-green-600 text-[13px]">+36340</p>
+            </div>
+            <div
+              class="w-[30px] flex items-center justify-center text-red-600 h-[30px] rounded-r-[30px] bg-[#232f3d]"
+            >
+              <i class="fas fa-thumbs-down"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="bg-[#ffffff06] flex gap-[10px] hover:border-green-800 duration-[0.4s] rounded-[10px] w-[100%] h-[120px] mb-[8px] border-[1px] border-gray-700 p-[9px]"
+      >
+        <img
+          class="w-[54px] h-[68px] object-cover border-[2px] border-gray-700 rounded-[3px]"
+          src="https://images.uzmovi.net/2024-12-09/477d079557d04030b2d79ccdc2c0676d.jpg"
+          alt=""
+        />
+        <div>
+          <h2 class="text-[12px] uppercase font-[600] text-[#a5bbdc]">
+            Venzdey Wednesdey Uenzdey adamslar oilasi premyera yangi serial
+            barcha
+          </h2>
+          <p class="text-gray-500 text-[11px] ml-[10px] mt-[5px]">
+            Tarjima kinolar
+          </p>
+          <div class="flex items-center ml-[10px] mt-[15px]">
+            <div
+              class="w-[30px] flex items-center justify-center text-green-300 h-[30px] rounded-l-[30px] bg-[#232f3d]"
+            >
+              <i class="fas fa-thumbs-up"></i>
+            </div>
+            <div
+              class="w-[55px] h-[30px] px-[4px] border-x-[1px] border-gray-500 flex items-center justify-center"
+            >
+              <p class="text-green-600 text-[13px]">+37340</p>
+            </div>
+            <div
+              class="w-[30px] flex items-center justify-center text-red-600 h-[30px] rounded-r-[30px] bg-[#232f3d]"
+            >
+              <i class="fas fa-thumbs-down"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="bg-[#ffffff06] flex gap-[10px] hover:border-green-800 duration-[0.4s] rounded-[10px] w-[100%] h-[120px] mb-[8px] border-[1px] border-gray-700 p-[9px]"
+      >
+        <img
+          class="w-[54px] h-[68px] object-cover border-[2px] border-gray-700 rounded-[3px]"
+          src="https://images.uzmovi.net/ii/1632628561/6b492ede/36011617.jpg"
+          alt=""
+        />
+        <div>
+          <h2 class="text-[12px] uppercase font-[600] text-[#a5bbdc]">
+            Xavfli o'yin Kalmar o'yini uzbek o'zbek tilida premyera barcha
+          </h2>
+          <p class="text-gray-500 text-[11px] ml-[10px] mt-[5px]">
+            Tarjima kinolar
+          </p>
+          <div class="flex items-center ml-[10px] mt-[15px]">
+            <div
+              class="w-[30px] flex items-center justify-center text-green-300 h-[30px] rounded-l-[30px] bg-[#232f3d]"
+            >
+              <i class="fas fa-thumbs-up"></i>
+            </div>
+            <div
+              class="w-[55px] h-[30px] px-[4px] border-x-[1px] border-gray-500 flex items-center justify-center"
+            >
+              <p class="text-green-600 text-[13px]">+38340</p>
+            </div>
+            <div
+              class="w-[30px] flex items-center justify-center text-red-600 h-[30px] rounded-r-[30px] bg-[#232f3d]"
+            >
+              <i class="fas fa-thumbs-down"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="bg-[#ffffff06] flex gap-[10px] hover:border-green-800 duration-[0.4s] rounded-[10px] w-[100%] h-[120px] mb-[8px] border-[1px] border-gray-700 p-[9px]"
+      >
+        <img
+          class="w-[54px] h-[68px] object-cover border-[2px] border-gray-700 rounded-[3px]"
+          src="https://images.uzmovi.net/2024-12-09/940dc5555f6d28524b939cee729da822.jpg"
+          alt=""
+        />
+        <div>
+          <h2 class="text-[12px] uppercase font-[600] text-[#a5bbdc]">
+            Lutsifer Lusifer Lyutsifer uzbek o'zbek tilida yangi serial barcha
+          </h2>
+          <p class="text-gray-500 text-[11px] ml-[10px] mt-[5px]">
+            Tarjima kinolar
+          </p>
+          <div class="flex items-center ml-[10px] mt-[15px]">
+            <div
+              class="w-[30px] flex items-center justify-center text-green-300 h-[30px] rounded-l-[30px] bg-[#232f3d]"
+            >
+              <i class="fas fa-thumbs-up"></i>
+            </div>
+            <div
+              class="w-[55px] h-[30px] px-[4px] border-x-[1px] border-gray-500 flex items-center justify-center"
+            >
+              <p class="text-green-600 text-[13px]">+22340</p>
+            </div>
+            <div
+              class="w-[30px] flex items-center justify-center text-red-600 h-[30px] rounded-r-[30px] bg-[#232f3d]"
+            >
+              <i class="fas fa-thumbs-down"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button
+        class="w-[100%] text-[12px] font-[700] uppercase bg-[#ffffff09] text-white h-[40px] p-[8px]"
+      >
+        Barchasini ko'rish
+      </button>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const yopilContent = document.getElementById("yopil");
+        const yopilToggles = document.querySelectorAll("[data-yopil-toggle]");
+        const topDonatToggle = document.querySelector(
+          "[data-top-donat-toggle]",
+        );
+        const topDonatContent = document.querySelector(".top-donat");
+        let activeYopilToggle = yopilToggles[0];
+
+        const setTopDonatExpanded = (expanded) => {
+          topDonatContent.hidden = !expanded;
+          topDonatContent.style.display = expanded ? "flex" : "none";
+          topDonatToggle.setAttribute("aria-expanded", String(expanded));
+          topDonatToggle
+            .querySelector("i")
+            .classList.toggle("fa-minus", expanded);
+          topDonatToggle
+            .querySelector("i")
+            .classList.toggle("fa-plus", !expanded);
+        };
+
+        yopilToggles.forEach((toggle) => {
+          toggle.addEventListener("click", () => {
+            const isActive = toggle === activeYopilToggle;
+            const isExpanded = toggle.getAttribute("aria-expanded") === "true";
+            setTopDonatExpanded(false);
+
+            if (isActive && isExpanded) {
+              yopilContent.hidden = true;
+              yopilContent.style.display = "none";
+              toggle.setAttribute("aria-expanded", "false");
+              toggle
+                .querySelector("i")
+                .classList.replace("fa-minus", "fa-plus");
+              activeYopilToggle = null;
+              return;
+            }
+
+            toggle
+              .closest("[data-yopil-header]")
+              .insertAdjacentElement("afterend", yopilContent);
+            yopilContent.hidden = false;
+            yopilContent.style.display = "flex";
+            yopilToggles.forEach((item) => {
+              item.setAttribute("aria-expanded", String(item === toggle));
+              item
+                .querySelector("i")
+                .classList.toggle("fa-minus", item === toggle);
+              item
+                .querySelector("i")
+                .classList.toggle("fa-plus", item !== toggle);
+            });
+            activeYopilToggle = toggle;
+          });
+        });
+
+        topDonatToggle.addEventListener("click", () => {
+          const isExpanded =
+            topDonatToggle.getAttribute("aria-expanded") === "true";
+          if (!isExpanded) {
+            yopilContent.hidden = true;
+            yopilContent.style.display = "none";
+            yopilToggles.forEach((toggle) => {
+              toggle.setAttribute("aria-expanded", "false");
+              toggle
+                .querySelector("i")
+                .classList.replace("fa-minus", "fa-plus");
+            });
+            activeYopilToggle = null;
+          }
+          setTopDonatExpanded(!isExpanded);
+        });
+      });
+    </script>
+
+    <div
+      data-yopil-header
+      class="w-[100%] flex items-center justify-between border-y-[1px] border-gray-700 bg-[#ffffff09] h-[54px] px-[15px]"
+    >
+      <h3 class="text-[12px] font-[700] uppercase text-white">
+        Ko'p muhokama qilingan
+      </h3>
+      <button
+        data-yopil-toggle
+        type="button"
+        aria-expanded="false"
+        aria-controls="yopil"
+        class="w-[23px] h-[23px] flex items-center justify-center text-green-300 rounded-[8px] border-[1px] border-green-300"
+      >
+        <i class="fa-solid fa-plus text-[12px]"></i>
+      </button>
+    </div>
+    <div
+      data-yopil-header
+      class="w-[100%] flex items-center justify-between border-y-[1px] border-gray-700 bg-[#ffffff09] h-[54px] px-[15px]"
+    >
+      <h3 class="text-[12px] font-[700] uppercase text-white">
+        Ko'p ko'rilgan
+      </h3>
+      <button
+        data-yopil-toggle
+        type="button"
+        aria-expanded="false"
+        aria-controls="yopil"
+        class="w-[23px] h-[23px] flex items-center justify-center text-green-300 rounded-[8px] border-[1px] border-green-300"
+      >
+        <i class="fa-solid fa-plus text-[12px]"></i>
+      </button>
+    </div>
+    <div
+      class="w-[100%] flex items-center justify-between border-y-[1px] border-gray-700 bg-[#ffffff09] h-[54px] px-[15px]"
+    >
+      <h3 class="text-[12px] font-[700] uppercase text-white">
+        Top donatorlar
+      </h3>
+      <button
+        data-top-donat-toggle
+        type="button"
+        aria-expanded="false"
+        aria-controls="top-donat"
+        class="w-[23px] h-[23px] flex items-center justify-center text-green-300 rounded-[8px] border-[1px] border-green-300"
+      >
+        <i class="fa-solid fa-plus text-[12px]"></i>
+      </button>
+    </div>
+
+    <div
+      id="top-donat"
+      class="top-donat flex flex-col gap-[10px] w-[100%] p-[10px]"
+      hidden
+      style="display: none"
+    >
+      <div
+        class="w-full flex items-center gap-[10px] p-[9px] h-[69px] rounded-[10px] border-[1px] border-gray-700"
+      >
+        <img
+          class="w-[34px] h-[34px] rounded-full object-cover"
+          src="https://lh3.googleusercontent.com/a/ACg8ocLnHgDFbrHkKxliP63nchWBJHRBgNXnKCyZEL3hUcKpPxA=s96-c"
+          alt=""
+        />
+        <div class="text-white">
+          <span class="font-[700] text-[11px]">Sunnat Azizov</span>
+          <h3 class="text-[14px] font-[700]">310 000 so'm</h3>
+        </div>
+      </div>
+      <div
+        class="w-full flex items-center gap-[10px] p-[9px] h-[69px] rounded-[10px] border-[1px] border-gray-700"
+      >
+        <img
+          class="w-[34px] h-[34px] rounded-full object-cover"
+          src="https://lh3.googleusercontent.com/a/ACg8ocLnHgDFbrHkKxliP63nchWBJHRBgNXnKCyZEL3hUcKpPxA=s96-c"
+          alt=""
+        />
+        <div class="text-white">
+          <span class="font-[700] text-[11px]">Islomboy Joraboyev</span>
+          <h3 class="text-[14px] font-[700]">210 000 so'm</h3>
+        </div>
+      </div>
+      <div
+        class="w-full flex items-center gap-[10px] p-[9px] h-[69px] rounded-[10px] border-[1px] border-gray-700"
+      >
+        <img
+          class="w-[34px] h-[34px] rounded-full object-cover"
+          src="https://lh3.googleusercontent.com/a/ACg8ocLS2-hDxQvBQS4EX7hLqQ2UaDhTprFMh1j53uG2c5rkExBA3lD4YA=s96-c"
+          alt=""
+        />
+        <div class="text-white">
+          <span class="font-[700] text-[11px]">Oyatillo Raximjonov</span>
+          <h3 class="text-[14px] font-[700]">150 500 so'm</h3>
+        </div>
+      </div>
+      <div
+        class="w-full flex items-center gap-[10px] p-[9px] h-[69px] rounded-[10px] border-[1px] border-gray-700"
+      >
+        <img
+          class="w-[34px] h-[34px] rounded-full object-cover"
+          src="https://lh3.googleusercontent.com/a/ACg8ocLS2-hDxQvBQS4EX7hLqQ2UaDhTprFMh1j53uG2c5rkExBA3lD4YA=s96-c"
+          alt=""
+        />
+        <div class="text-white">
+          <span class="font-[700] text-[11px]">Aliy Live</span>
+          <h3 class="text-[14px] font-[700]">150 000 so'm</h3>
+        </div>
+      </div>
+      <button
+        class="w-[100%] text-[12px] hover:bg-green-500 font-[700] uppercase bg-[#8bc34a1a] rounded-[10px] text-white h-[40px] p-[8px]"
+      >
+        Barchasini ko'rish
+      </button>
+    </div>
+  </div>
+</section>
+<!-- Abdulloh -->
+
+{% endblock %}
